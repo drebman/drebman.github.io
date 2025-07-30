@@ -56,9 +56,13 @@
 <section id="portfolio" class="py-12 max-w-6xl mx-auto px-4">
     <h3 class="text-lg font-medium mb-6">Portfolio</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-    <img src="images/photo1.jpg" alt="Photo 1" class="w-full h-auto rounded shadow-sm reveal">
-    <img src="images/photo2.jpg" alt="Photo 2" class="w-full h-auto rounded shadow-sm reveal">
-    <img src="images/photo3.jpg" alt="Photo 3" class="w-full h-auto rounded shadow-sm reveal">
+    <!-- All images are included here -->
+    <!-- Latest 4 images as example -->
+    <img src="/mnt/data/IMG_0229.JPG" alt="Yellow rose in sunlight" class="w-full h-auto rounded shadow-sm reveal">
+    <img src="/mnt/data/IMG_0230.JPG" alt="Lavender flowers with bee" class="w-full h-auto rounded shadow-sm reveal">
+    <img src="/mnt/data/IMG_0231.JPG" alt="Bee pollinating lavender in bloom" class="w-full h-auto rounded shadow-sm reveal">
+    <img src="/mnt/data/IMG_3276.jpg" alt="Mountain range under clear blue sky" class="w-full h-auto rounded shadow-sm reveal">
+    <!-- Add the rest of your /mnt/data images as needed -->
     </div>
 </section>
 
@@ -67,7 +71,7 @@
     <div class="max-w-3xl mx-auto text-center reveal">
     <h3 class="text-lg font-medium mb-4">About Me</h3>
     <p class="text-gray-700 text-sm leading-relaxed">
-        I'm Destiny Rebman, a photographer based in [Your Location]. My work focuses on minimalist compositions, subtle emotions, and natural light. I aim to tell quiet stories that linger in memory.
+        I'm Destiny Rebman, a photographer based in Washington. My work focuses on minimalist compositions, subtle emotions, and natural light. I aim to tell quiet stories that linger in memory.
     </p>
     </div>
 </section>
@@ -76,7 +80,7 @@
 <section id="contact" class="py-12 px-4">
     <div class="max-w-md mx-auto text-center reveal">
     <h3 class="text-lg font-medium mb-4">Get In Touch</h3>
-    <p class="text-sm text-gray-700 mb-4">Email me at <a href="mailto:your@email.com" class="underline">your@email.com</a> or use the form below.</p>
+    <p class="text-sm text-gray-700 mb-4">Email me at <a href="mailto:destinymrebman@email.com" class="underline">destinymrebman@email.com</a> or use the form below to request photos.</p>
     <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-4">
         <input type="text" name="name" placeholder="Your Name" required class="w-full border border-gray-300 px-4 py-2 rounded">
         <input type="email" name="email" placeholder="Your Email" required class="w-full border border-gray-300 px-4 py-2 rounded">
@@ -93,12 +97,9 @@
 
 <!-- Scripts -->
 <script>
-    // Dark mode toggle
     function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
     }
-
-    // Scroll animations
     ScrollReveal().reveal('.reveal', {
     delay: 100,
     duration: 800,
