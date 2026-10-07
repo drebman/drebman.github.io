@@ -1,0 +1,3350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
+<title>DESTINY REBMAN // PORTFOLIO OS</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap');
+
+:root{
+  --bg:#050505;
+  --panel:#0b0b0b;
+  --line:#292929;
+  --text:#e9e5dc;
+  --muted:#777;
+  --red:#c91414;
+  --hot:#ff3025;
+  --orange:#ff8a00;
+  --green:#63d36b;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+  background:var(--bg);
+}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+
+  color:var(--text);
+
+  background:
+    radial-gradient(
+      circle at 72% 8%,
+      rgba(201,20,20,.10),
+      transparent 30%
+    ),
+    var(--bg);
+
+  font-family:
+    "Barlow Condensed",
+    Impact,
+    sans-serif;
+}
+
+body::before{
+  content:"";
+
+  position:fixed;
+  inset:0;
+
+  z-index:9999;
+  pointer-events:none;
+
+  opacity:.065;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 3px,
+      rgba(255,255,255,.05) 4px
+    );
+}
+
+body::after{
+  content:"";
+
+  position:fixed;
+  inset:0;
+
+  z-index:9998;
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 50%,
+      rgba(0,0,0,.7)
+    );
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+::selection{
+  color:#000;
+  background:var(--hot);
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  min-height:58px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+
+  padding:8px 28px;
+
+  background:rgba(5,5,5,.94);
+
+  border-bottom:1px solid var(--line);
+
+  backdrop-filter:blur(10px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  color:#ddd;
+
+  font-size:17px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  white-space:nowrap;
+}
+
+.brand-mark{
+  width:27px;
+  height:27px;
+
+  display:grid;
+  place-items:center;
+
+  background:var(--red);
+  color:#050505;
+
+  clip-path:
+    polygon(
+      0 12%,
+      76% 0,
+      100% 20%,
+      88% 100%,
+      14% 87%
+    );
+}
+
+.topnav{
+  display:flex;
+  gap:20px;
+
+  font:10px "Share Tech Mono",monospace;
+
+  letter-spacing:1px;
+
+  color:#777;
+}
+
+.topnav button{
+  border:0;
+  background:none;
+  color:inherit;
+}
+
+.topnav button:hover{
+  color:var(--hot);
+}
+
+
+/* =========================================================
+   SYSTEM STATUS
+========================================================= */
+
+.system{
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  color:var(--green);
+
+  font:9px "Share Tech Mono",monospace;
+
+  white-space:nowrap;
+}
+
+.system-dot{
+  width:7px;
+  height:7px;
+
+  flex:0 0 7px;
+
+  border-radius:50%;
+
+  background:#182b19;
+
+  box-shadow:none;
+
+  /*
+    IMPORTANT:
+    No CSS animation here.
+
+    JavaScript controls this LED so it has
+    a perfectly deterministic on/off state.
+  */
+}
+
+.system-dot.online{
+  background:var(--green);
+
+  box-shadow:
+    0 0 10px var(--green);
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.shell{
+  width:min(1380px,100%);
+
+  margin:auto;
+
+  padding:20px;
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+.hud{
+  display:grid;
+
+  grid-template-columns:
+    1.3fr 1fr 1fr 1fr;
+
+  gap:9px;
+
+  margin-bottom:10px;
+}
+
+.hud-card{
+  position:relative;
+
+  min-width:0;
+
+  padding:12px 15px;
+
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #121212,
+      #0b0b0b
+    );
+
+  border:1px solid var(--line);
+}
+
+.hud-card::after{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  bottom:0;
+
+  width:100%;
+  height:2px;
+
+  background:var(--red);
+}
+
+.hud-label{
+  margin-bottom:5px;
+
+  color:#5f5f5f;
+
+  font:8px "Share Tech Mono",monospace;
+
+  letter-spacing:2px;
+}
+
+.hud-value{
+  font-size:20px;
+
+  font-weight:900;
+
+  line-height:1;
+
+  text-transform:uppercase;
+}
+
+.hud-value.red{
+  color:var(--hot);
+}
+
+.hud-value.green{
+  color:var(--green);
+}
+
+.hud-value.orange{
+  color:var(--orange);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+  min-height:455px;
+
+  display:grid;
+
+  grid-template-columns:
+    1.15fr .85fr;
+
+  gap:10px;
+
+  margin-bottom:10px;
+}
+
+.hero-main{
+  position:relative;
+
+  overflow:hidden;
+
+  padding:43px;
+
+  border:1px solid var(--line);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(201,20,20,.08),
+      transparent 45%
+    ),
+    #090909;
+}
+
+.hero-main::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  opacity:.055;
+
+  background-image:
+    linear-gradient(#aaa 1px,transparent 1px),
+    linear-gradient(90deg,#aaa 1px,transparent 1px);
+
+  background-size:42px 42px;
+}
+
+.hero-main > *{
+  position:relative;
+
+  z-index:2;
+}
+
+.eyebrow{
+  color:var(--orange);
+
+  font:10px "Share Tech Mono",monospace;
+
+  letter-spacing:3px;
+
+  margin-bottom:17px;
+}
+
+h1{
+  font-size:clamp(68px,9vw,125px);
+
+  line-height:.72;
+
+  letter-spacing:-4px;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  text-shadow:
+    5px 5px 0 #400606;
+}
+
+h1 span{
+  display:block;
+
+  color:var(--hot);
+}
+
+.hero-description{
+  max-width:610px;
+
+  margin-top:28px;
+
+  color:#999;
+
+  font:12px/1.7 "Share Tech Mono",monospace;
+}
+
+.actions{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:24px;
+}
+
+.btn{
+  min-height:41px;
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:0 17px;
+
+  border:1px solid var(--red);
+
+  background:var(--red);
+
+  color:#fff;
+
+  clip-path:
+    polygon(
+      6px 0,
+      100% 0,
+      100% calc(100% - 6px),
+      calc(100% - 6px) 100%,
+      0 100%,
+      0 6px
+    );
+
+  font-size:12px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  transition:
+    transform .18s,
+    background .18s,
+    box-shadow .18s;
+}
+
+.btn:hover{
+  background:var(--hot);
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 8px 25px rgba(255,48,37,.18);
+}
+
+.btn.secondary{
+  background:transparent;
+
+  border-color:#444;
+
+  color:#aaa;
+}
+
+.btn.secondary:hover{
+  color:#fff;
+
+  border-color:var(--red);
+}
+
+.btn.small{
+  min-height:34px;
+
+  padding:0 12px;
+
+  font-size:10px;
+}
+
+
+/* =========================================================
+   REAL RADAR
+========================================================= */
+
+.radar-panel{
+  position:relative;
+
+  overflow:hidden;
+
+  min-height:455px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid var(--line);
+
+  background:#080808;
+}
+
+#radarCanvas{
+  width:min(390px,78%);
+
+  aspect-ratio:1;
+
+  display:block;
+}
+
+.radar-label{
+  position:absolute;
+
+  left:16px;
+  top:16px;
+
+  z-index:5;
+
+  color:#555;
+
+  font:9px "Share Tech Mono",monospace;
+
+  letter-spacing:2px;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.content-grid{
+  display:grid;
+
+  grid-template-columns:
+    1.55fr .75fr;
+
+  gap:10px;
+}
+
+.panel{
+  background:#0b0b0b;
+
+  border:1px solid var(--line);
+}
+
+.panel-head{
+  min-height:47px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding:12px 16px;
+
+  background:#101010;
+
+  border-bottom:1px solid var(--line);
+}
+
+.panel-title{
+  font-size:19px;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+}
+
+.panel-code{
+  color:#555;
+
+  font:9px "Share Tech Mono",monospace;
+}
+
+
+/* =========================================================
+   MISSIONS
+========================================================= */
+
+.missions{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:1px;
+
+  background:var(--line);
+}
+
+.mission{
+  position:relative;
+
+  min-height:205px;
+
+  padding:19px;
+
+  overflow:hidden;
+
+  border:0;
+
+  background:#0d0d0d;
+
+  color:inherit;
+
+  text-align:left;
+
+  transition:
+    background .2s,
+    box-shadow .2s;
+}
+
+.mission:hover{
+  background:#151515;
+}
+
+.mission.selected{
+  background:#151515;
+
+  box-shadow:
+    inset 4px 0 var(--red);
+}
+
+.mission-number{
+  margin-bottom:31px;
+
+  color:#4b4b4b;
+
+  font:9px "Share Tech Mono",monospace;
+}
+
+.mission h3{
+  max-width:380px;
+
+  font-size:30px;
+
+  line-height:.84;
+
+  text-transform:uppercase;
+}
+
+.mission p{
+  max-width:370px;
+
+  margin-top:12px;
+
+  color:#777;
+
+  font:10px/1.55 "Share Tech Mono",monospace;
+}
+
+.mission-tech{
+  position:absolute;
+
+  left:19px;
+  bottom:14px;
+
+  color:var(--red);
+
+  font:8px "Share Tech Mono",monospace;
+}
+
+.mission-arrow{
+  position:absolute;
+
+  right:16px;
+  top:14px;
+
+  color:#444;
+
+  font-size:20px;
+
+  transition:.2s;
+}
+
+.mission:hover .mission-arrow,
+.mission.selected .mission-arrow{
+  color:var(--hot);
+}
+
+
+/* =========================================================
+   SIDE
+========================================================= */
+
+.side{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+}
+
+.detail{
+  min-height:330px;
+}
+
+.detail-body{
+  padding:21px;
+}
+
+.detail-tag{
+  margin-bottom:10px;
+
+  color:var(--orange);
+
+  font:9px "Share Tech Mono",monospace;
+
+  letter-spacing:2px;
+}
+
+.detail h3{
+  font-size:40px;
+
+  line-height:.82;
+
+  text-transform:uppercase;
+}
+
+.detail h3 span{
+  color:var(--hot);
+}
+
+.detail p{
+  margin-top:19px;
+
+  color:#888;
+
+  font:11px/1.7 "Share Tech Mono",monospace;
+}
+
+.detail-actions{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:7px;
+
+  margin-top:19px;
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills{
+  padding:17px;
+}
+
+.skill{
+  margin-bottom:15px;
+}
+
+.skill:last-child{
+  margin-bottom:0;
+}
+
+.skill-top{
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:5px;
+
+  color:#999;
+
+  font:9px "Share Tech Mono",monospace;
+}
+
+.skill-bar{
+  height:6px;
+
+  overflow:hidden;
+
+  background:#252525;
+}
+
+.skill-fill{
+  width:0;
+
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--red),
+      var(--hot)
+    );
+
+  transition:
+    width 1s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   PROFILE / TERMINAL
+========================================================= */
+
+.profile-grid{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:10px;
+
+  margin-top:10px;
+}
+
+.profile,
+.terminal{
+  border:1px solid var(--line);
+
+  background:#0b0b0b;
+}
+
+.profile-content{
+  padding:21px;
+}
+
+.profile-name{
+  font-size:43px;
+
+  line-height:.8;
+
+  text-transform:uppercase;
+}
+
+.profile-role{
+  margin-top:8px;
+
+  color:var(--orange);
+
+  font:9px "Share Tech Mono",monospace;
+}
+
+.profile-copy{
+  margin-top:20px;
+
+  color:#888;
+
+  font:11px/1.8 "Share Tech Mono",monospace;
+}
+
+.stats{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:7px;
+
+  margin-top:19px;
+}
+
+.stat{
+  padding:11px;
+
+  background:#141414;
+
+  border-left:2px solid var(--red);
+}
+
+.stat strong{
+  display:block;
+
+  font-size:23px;
+}
+
+.stat small{
+  color:#666;
+
+  font:8px "Share Tech Mono",monospace;
+}
+
+
+/* =========================================================
+   TERMINAL
+========================================================= */
+
+.terminal-screen{
+  min-height:255px;
+  max-height:255px;
+
+  overflow:auto;
+
+  padding:17px;
+
+  color:#bbb;
+
+  font:11px/1.65 "Share Tech Mono",monospace;
+}
+
+.term-line{
+  margin-bottom:5px;
+}
+
+.term-output{
+  color:#777;
+}
+
+.term-input{
+  display:flex;
+
+  gap:7px;
+
+  padding:11px 17px;
+
+  border-top:1px solid var(--line);
+}
+
+.term-input span{
+  color:var(--hot);
+
+  font:11px "Share Tech Mono",monospace;
+}
+
+.term-input input{
+  flex:1;
+
+  min-width:0;
+
+  border:0;
+
+  background:transparent;
+
+  color:#ddd;
+
+  font:11px "Share Tech Mono",monospace;
+}
+
+.term-input input::placeholder{
+  color:#444;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:30px;
+
+  margin-top:10px;
+
+  padding:35px;
+
+  border:1px solid var(--line);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(201,20,20,.08),
+      transparent
+    ),
+    #090909;
+}
+
+.contact h2{
+  font-size:clamp(44px,7vw,88px);
+
+  line-height:.75;
+
+  text-transform:uppercase;
+}
+
+.contact h2 span{
+  color:var(--hot);
+}
+
+.contact p{
+  max-width:440px;
+
+  color:#777;
+
+  font:10px/1.7 "Share Tech Mono",monospace;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding:19px 2px 4px;
+
+  color:#444;
+
+  font:8px "Share Tech Mono",monospace;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+  position:fixed;
+
+  inset:0;
+
+  z-index:5000;
+
+  display:none;
+
+  place-items:center;
+
+  padding:20px;
+
+  background:rgba(0,0,0,.82);
+
+  backdrop-filter:blur(7px);
+}
+
+.modal.open{
+  display:grid;
+}
+
+.modal-box{
+  width:min(700px,100%);
+
+  max-height:90vh;
+
+  overflow:auto;
+
+  border:1px solid #555;
+
+  background:#0b0b0b;
+
+  box-shadow:
+    0 25px 100px #000;
+}
+
+.modal-head{
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:14px 17px;
+
+  border-bottom:1px solid #333;
+}
+
+.modal-close{
+  width:31px;
+  height:31px;
+
+  border:1px solid #444;
+
+  background:#151515;
+
+  color:#aaa;
+}
+
+.modal-close:hover{
+  color:#fff;
+
+  border-color:var(--red);
+}
+
+.modal-body{
+  padding:25px;
+}
+
+.modal-body h2{
+  font-size:54px;
+
+  line-height:.8;
+
+  text-transform:uppercase;
+}
+
+.modal-body h2 span{
+  color:var(--hot);
+}
+
+.modal-body p{
+  margin-top:20px;
+
+  color:#999;
+
+  font:12px/1.8 "Share Tech Mono",monospace;
+}
+
+.modal-tags{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  margin-top:19px;
+}
+
+.modal-tag{
+  padding:6px 8px;
+
+  border:1px solid #333;
+
+  color:#777;
+
+  font:8px "Share Tech Mono",monospace;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:950px){
+
+  .hud{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .radar-panel{
+    min-height:380px;
+  }
+
+  .content-grid{
+    grid-template-columns:1fr;
+  }
+
+  .profile-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .topbar{
+    padding:8px 14px;
+  }
+
+  .topnav{
+    display:none;
+  }
+
+  .shell{
+    padding:10px;
+  }
+
+  .hud{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .hud-card{
+    padding:10px;
+  }
+
+  .hero-main{
+    padding:28px 21px;
+  }
+
+  h1{
+    font-size:68px;
+
+    letter-spacing:-2px;
+  }
+
+  .missions{
+    grid-template-columns:1fr;
+  }
+
+  .mission{
+    min-height:190px;
+  }
+
+  .contact{
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    padding:25px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .actions .btn{
+    width:100%;
+  }
+
+  footer{
+    flex-direction:column;
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+
+    transition-duration:.01ms !important;
+  }
+
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     TOP BAR
+======================================================== -->
+
+<header class="topbar">
+
+  <a class="brand" href="#">
+    <span class="brand-mark">D</span>
+    DESTINY // REBMAN
+  </a>
+
+
+  <nav class="topnav">
+
+    <button data-scroll="missions">
+      MISSIONS
+    </button>
+
+    <button data-scroll="profile">
+      PROFILE
+    </button>
+
+    <button data-scroll="contact">
+      COMMS
+    </button>
+
+  </nav>
+
+
+  <div class="system">
+
+    <span
+      class="system-dot online"
+      id="systemDot"
+    ></span>
+
+    SYSTEMS ONLINE
+
+  </div>
+
+</header>
+
+
+<main class="shell">
+
+
+<!-- =======================================================
+     HUD
+======================================================== -->
+
+<section class="hud">
+
+  <div class="hud-card">
+
+    <div class="hud-label">
+      PLAYER
+    </div>
+
+    <div class="hud-value red">
+      DESTINY REBMAN
+    </div>
+
+  </div>
+
+
+  <div class="hud-card">
+
+    <div class="hud-label">
+      PROJECTS
+    </div>
+
+    <div class="hud-value">
+      04+
+    </div>
+
+  </div>
+
+
+  <div class="hud-card">
+
+    <div class="hud-label">
+      BUILD STATUS
+    </div>
+
+    <div class="hud-value green">
+      ONLINE
+    </div>
+
+  </div>
+
+
+  <div class="hud-card">
+
+    <div class="hud-label">
+      CURRENT MISSION
+    </div>
+
+    <div
+      class="hud-value orange"
+      id="hudMission"
+    >
+      POCKET RECIPES
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     HERO
+======================================================== -->
+
+<section class="hero">
+
+
+  <div class="hero-main">
+
+    <div class="eyebrow">
+      PORTFOLIO // PLAYER PROFILE LOADED
+    </div>
+
+
+    <h1>
+      DESTINY
+      <span>REBMAN</span>
+    </h1>
+
+
+    <p class="hero-description">
+
+      SOFTWARE DEVELOPER / GAME DESIGN ENTHUSIAST / BUILDER
+
+      <br><br>
+
+      I build things that live somewhere between useful,
+      technical, and fun. Explore the projects, inspect the
+      systems, and pick a mission.
+
+    </p>
+
+
+    <div class="actions">
+
+      <button
+        class="btn"
+        data-scroll="missions"
+      >
+        ENTER MISSIONS
+      </button>
+
+
+      <a
+        class="btn secondary"
+        href="https://github.com/drebman"
+        target="_blank"
+        rel="noopener"
+      >
+        OPEN GITHUB
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       RADAR
+  ====================================================== -->
+
+  <div class="radar-panel">
+
+    <div class="radar-label">
+      PROJECT RADAR // LIVE
+    </div>
+
+    <canvas id="radarCanvas"></canvas>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     MISSIONS
+======================================================== -->
+
+<section
+  class="content-grid"
+  id="missions"
+>
+
+
+  <div class="panel">
+
+    <div class="panel-head">
+
+      <div class="panel-title">
+        Mission Select
+      </div>
+
+      <div class="panel-code">
+        [1–4] SELECT
+      </div>
+
+    </div>
+
+
+    <div class="missions">
+
+
+      <button
+        class="mission selected"
+        data-project="pocket"
+      >
+
+        <div class="mission-number">
+          MISSION 01
+        </div>
+
+        <h3>
+          POCKET<br>
+          RECIPES
+        </h3>
+
+        <p>
+          A distraction-free mobile recipe companion
+          designed for actual kitchen use.
+        </p>
+
+        <div class="mission-tech">
+          REACT NATIVE // EXPO
+        </div>
+
+        <div class="mission-arrow">
+          ↗
+        </div>
+
+      </button>
+
+
+      <button
+        class="mission"
+        data-project="bio"
+      >
+
+        <div class="mission-number">
+          MISSION 02
+        </div>
+
+        <h3>
+          BIOINFORMATICS<br>
+          PROJECT
+        </h3>
+
+        <p>
+          Scientific programming and analysis exploring
+          gene lengths in symbiotic bacteria.
+        </p>
+
+        <div class="mission-tech">
+          PYTHON // BIOPYTHON
+        </div>
+
+        <div class="mission-arrow">
+          ↗
+        </div>
+
+      </button>
+
+
+      <button
+        class="mission"
+        data-project="photo"
+      >
+
+        <div class="mission-number">
+          MISSION 03
+        </div>
+
+        <h3>
+          PHOTOGRAPHY<br>
+          WEBSITE
+        </h3>
+
+        <p>
+          A lightweight personal photography website
+          and visual project.
+        </p>
+
+        <div class="mission-tech">
+          HTML // CSS // WEB
+        </div>
+
+        <div class="mission-arrow">
+          ↗
+        </div>
+
+      </button>
+
+
+      <button
+        class="mission"
+        data-project="snake"
+      >
+
+        <div class="mission-number">
+          MISSION 04
+        </div>
+
+        <h3>
+          SSSSSNAKE IT<br>
+          TILL YOU MAKE IT
+        </h3>
+
+        <p>
+          A playful game about exploring, dressing up,
+          and hanging out with a snake.
+        </p>
+
+        <div class="mission-tech">
+          GAME DESIGN // JAVASCRIPT
+        </div>
+
+        <div class="mission-arrow">
+          ↗
+        </div>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+<!-- =======================================================
+     SIDE PANEL
+======================================================== -->
+
+  <aside class="side">
+
+
+    <div class="panel detail">
+
+      <div class="panel-head">
+
+        <div class="panel-title">
+          Mission Data
+        </div>
+
+        <div
+          class="panel-code"
+          id="missionCode"
+        >
+          M-01
+        </div>
+
+      </div>
+
+
+      <div class="detail-body">
+
+        <div
+          class="detail-tag"
+          id="detailTag"
+        >
+          MISSION COMPLETE // FEATURED
+        </div>
+
+
+        <h3 id="detailTitle">
+          POCKET<br>
+          <span>RECIPES</span>
+        </h3>
+
+
+        <p id="detailText">
+          A distraction-free mobile recipe companion
+          designed around real kitchen use.
+        </p>
+
+
+        <div class="detail-actions">
+
+          <a
+            id="detailPrimary"
+            class="btn small"
+            href="https://sites.google.com/uw.edu/pocketrecipes/home"
+            target="_blank"
+            rel="noopener"
+          >
+            CASE FILE
+          </a>
+
+
+          <a
+            id="detailGithub"
+            class="btn small secondary"
+            href="https://github.com/drebman"
+            target="_blank"
+            rel="noopener"
+          >
+            SOURCE
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         SKILLS
+    ==================================================== -->
+
+    <div class="panel">
+
+      <div class="panel-head">
+
+        <div class="panel-title">
+          Arsenal
+        </div>
+
+        <div class="panel-code">
+          SKILL MATRIX
+        </div>
+
+      </div>
+
+
+      <div class="skills">
+
+
+        <div class="skill">
+
+          <div class="skill-top">
+            <span>JAVASCRIPT</span>
+            <span>90%</span>
+          </div>
+
+          <div class="skill-bar">
+
+            <div
+              class="skill-fill"
+              data-width="90"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="skill">
+
+          <div class="skill-top">
+            <span>REACT NATIVE</span>
+            <span>84%</span>
+          </div>
+
+          <div class="skill-bar">
+
+            <div
+              class="skill-fill"
+              data-width="84"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="skill">
+
+          <div class="skill-top">
+            <span>PYTHON</span>
+            <span>78%</span>
+          </div>
+
+          <div class="skill-bar">
+
+            <div
+              class="skill-fill"
+              data-width="78"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="skill">
+
+          <div class="skill-top">
+            <span>HTML / CSS</span>
+            <span>92%</span>
+          </div>
+
+          <div class="skill-bar">
+
+            <div
+              class="skill-fill"
+              data-width="92"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+</section>
+
+
+<!-- =======================================================
+     PROFILE
+======================================================== -->
+
+<section
+  class="profile-grid"
+  id="profile"
+>
+
+
+  <div class="profile">
+
+    <div class="panel-head">
+
+      <div class="panel-title">
+        Player Profile
+      </div>
+
+      <div class="panel-code">
+        CLASS // DEVELOPER
+      </div>
+
+    </div>
+
+
+    <div class="profile-content">
+
+      <div class="profile-name">
+        Destiny<br>
+        Rebman
+      </div>
+
+
+      <div class="profile-role">
+        SOFTWARE DEVELOPER // GAME DESIGN
+      </div>
+
+
+      <p class="profile-copy">
+
+        I'm interested in coding, game design, and
+        building projects that are technically interesting
+        while still being enjoyable to use.
+
+        <br><br>
+
+        My work spans mobile applications, scientific
+        programming, websites, and games. I especially
+        enjoy taking an idea beyond the prototype and
+        figuring out how to make it actually work.
+
+      </p>
+
+
+      <div class="stats">
+
+        <div class="stat">
+          <strong>04+</strong>
+          <small>PROJECTS</small>
+        </div>
+
+        <div class="stat">
+          <strong>∞</strong>
+          <small>IDEAS</small>
+        </div>
+
+        <div class="stat">
+          <strong>01</strong>
+          <small>PLAYER</small>
+        </div>
+
+        <div class="stat">
+          <strong>100%</strong>
+          <small>CURIOUS</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+<!-- =======================================================
+     TERMINAL
+======================================================== -->
+
+  <div class="terminal">
+
+    <div class="panel-head">
+
+      <div class="panel-title">
+        Command Console
+      </div>
+
+      <div class="panel-code">
+        TYPE HELP
+      </div>
+
+    </div>
+
+
+    <div
+      class="terminal-screen"
+      id="terminalOutput"
+    >
+
+      <div class="term-line">
+
+        <span style="color:var(--hot)">
+          SYSTEM&gt;
+        </span>
+
+        CONNECTION ESTABLISHED.
+
+      </div>
+
+
+      <div class="term-line">
+
+        <span style="color:var(--hot)">
+          SYSTEM&gt;
+        </span>
+
+        DESTINY REBMAN PORTFOLIO OS v3.0
+
+      </div>
+
+
+      <div class="term-line term-output">
+
+        Type <strong>help</strong>
+        for available commands.
+
+      </div>
+
+    </div>
+
+
+    <form
+      class="term-input"
+      id="terminalForm"
+    >
+
+      <span>&gt;</span>
+
+      <input
+        id="terminalInput"
+        autocomplete="off"
+        placeholder="type a command..."
+        aria-label="Terminal command"
+      >
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     CONTACT
+======================================================== -->
+
+<section
+  class="contact"
+  id="contact"
+>
+
+  <div>
+
+    <div class="eyebrow">
+      COMMUNICATIONS // OPEN CHANNEL
+    </div>
+
+    <h2>
+      LET'S<br>
+      <span>BUILD.</span>
+    </h2>
+
+  </div>
+
+
+  <div>
+
+    <p>
+      Have a project, game idea, weird technical problem,
+      or something worth building? The channel is open.
+    </p>
+
+
+    <div class="actions">
+
+      <a
+        class="btn"
+        href="https://github.com/drebman"
+        target="_blank"
+        rel="noopener"
+      >
+        GITHUB
+      </a>
+
+
+      <a
+        class="btn secondary"
+        href="https://sites.google.com/uw.edu/pocketrecipes/home"
+        target="_blank"
+        rel="noopener"
+      >
+        POCKET RECIPES
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  <span>
+    DESTINY REBMAN // PORTFOLIO OS
+  </span>
+
+  <span>
+    HTML / CSS / JAVASCRIPT
+  </span>
+
+  <span>
+    © <span id="year"></span>
+  </span>
+
+</footer>
+
+</main>
+
+
+<!-- =======================================================
+     PROJECT MODAL
+======================================================== -->
+
+<div
+  class="modal"
+  id="projectModal"
+  role="dialog"
+  aria-modal="true"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <span class="panel-code">
+        PROJECT INTELLIGENCE
+      </span>
+
+
+      <button
+        class="modal-close"
+        id="modalClose"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="modal-body">
+
+      <div
+        class="detail-tag"
+        id="modalTag"
+      >
+        MISSION FILE
+      </div>
+
+
+      <h2 id="modalTitle">
+        POCKET<br>
+        <span>RECIPES</span>
+      </h2>
+
+
+      <p id="modalText"></p>
+
+
+      <div
+        class="modal-tags"
+        id="modalTags"
+      ></div>
+
+
+      <div class="actions">
+
+        <a
+          id="modalLink"
+          class="btn"
+          href="#"
+          target="_blank"
+          rel="noopener"
+        >
+          OPEN PROJECT
+        </a>
+
+
+        <button
+          id="modalDismiss"
+          class="btn secondary"
+          type="button"
+        >
+          RETURN
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PROJECT DATABASE
+========================================================= */
+
+const projects = {
+
+  pocket:{
+
+    code:"M-01",
+
+    title:
+      "POCKET<br><span>RECIPES</span>",
+
+    tag:
+      "MISSION COMPLETE // FEATURED",
+
+    text:
+      "A distraction-free mobile recipe companion designed around real kitchen use. The project grew from a prototype into a functional React Native / Expo application with recipe organization, importing, sharing, cooking navigation, and screen-awake functionality.",
+
+    link:
+      "https://sites.google.com/uw.edu/pocketrecipes/home",
+
+    github:
+      "https://github.com/drebman",
+
+    tags:[
+      "REACT NATIVE",
+      "EXPO",
+      "JAVASCRIPT",
+      "TYPESCRIPT",
+      "FIGMA",
+      "MOBILE"
+    ]
+
+  },
+
+
+  bio:{
+
+    code:"M-02",
+
+    title:
+      "BIOINFORMATICS<br><span>PROJECT</span>",
+
+    tag:
+      "MISSION // SCIENTIFIC COMPUTING",
+
+    text:
+      "A scientific programming project investigating gene lengths in symbiotic bacteria compared with closely related free-living bacteria.",
+
+    link:
+      "https://github.com/drebman/BioinformaticsProject",
+
+    github:
+      "https://github.com/drebman/BioinformaticsProject",
+
+    tags:[
+      "PYTHON",
+      "BIOPYTHON",
+      "PANDAS",
+      "MATPLOTLIB",
+      "DATA"
+    ]
+
+  },
+
+
+  photo:{
+
+    code:"M-03",
+
+    title:
+      "PHOTOGRAPHY<br><span>WEBSITE</span>",
+
+    tag:
+      "MISSION // VISUAL SYSTEM",
+
+    text:
+      "A personal photography website created as a lightweight visual experience for presenting a collection of photographs.",
+
+    link:
+      "https://github.com/drebman/photography",
+
+    github:
+      "https://github.com/drebman/photography",
+
+    tags:[
+      "HTML",
+      "CSS",
+      "WEB DESIGN",
+      "PHOTOGRAPHY"
+    ]
+
+  },
+
+
+  snake:{
+
+    code:"M-04",
+
+    title:
+      "SSSSSNAKE IT<br><span>TILL YOU MAKE IT</span>",
+
+    tag:
+      "MISSION // GAME DEV",
+
+    text:
+      "A playful game about exploring, dressing up, and spending time with a new snake friend. A collaborative project combining programming with game design and personality.",
+
+    link:
+      "https://github.com/E11aW/Sssssnake-It-Till-You-Make-It",
+
+    github:
+      "https://github.com/E11aW/Sssssnake-It-Till-You-Make-It",
+
+    tags:[
+      "GAME DESIGN",
+      "JAVASCRIPT",
+      "COLLABORATION",
+      "INTERACTION"
+    ]
+
+  }
+
+};
+
+
+/* =========================================================
+   PROJECT UI
+========================================================= */
+
+const missions =
+  document.querySelectorAll(".mission");
+
+const hudMission =
+  document.getElementById("hudMission");
+
+const detailCode =
+  document.getElementById("missionCode");
+
+const detailTag =
+  document.getElementById("detailTag");
+
+const detailTitle =
+  document.getElementById("detailTitle");
+
+const detailText =
+  document.getElementById("detailText");
+
+const detailPrimary =
+  document.getElementById("detailPrimary");
+
+const detailGithub =
+  document.getElementById("detailGithub");
+
+
+const modal =
+  document.getElementById("projectModal");
+
+const modalTitle =
+  document.getElementById("modalTitle");
+
+const modalTag =
+  document.getElementById("modalTag");
+
+const modalText =
+  document.getElementById("modalText");
+
+const modalTags =
+  document.getElementById("modalTags");
+
+const modalLink =
+  document.getElementById("modalLink");
+
+
+let currentProject =
+  "pocket";
+
+
+function selectMission(
+  id,
+  openModal=false
+){
+
+  const project =
+    projects[id];
+
+  if(!project){
+    return;
+  }
+
+  currentProject =
+    id;
+
+
+  missions.forEach(
+    mission=>{
+
+      mission.classList.toggle(
+        "selected",
+        mission.dataset.project === id
+      );
+
+    }
+  );
+
+
+  detailCode.textContent =
+    project.code;
+
+  detailTag.textContent =
+    project.tag;
+
+  detailTitle.innerHTML =
+    project.title;
+
+  detailText.textContent =
+    project.text;
+
+  detailPrimary.href =
+    project.link;
+
+  detailGithub.href =
+    project.github;
+
+
+  hudMission.textContent =
+    project.title
+      .replace(/<[^>]*>/g,"")
+      .replace(/\n/g," ");
+
+
+  if(openModal){
+
+    openProjectModal(id);
+
+  }
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openProjectModal(id){
+
+  const project =
+    projects[id];
+
+
+  modalTitle.innerHTML =
+    project.title;
+
+  modalTag.textContent =
+    project.tag;
+
+  modalText.textContent =
+    project.text;
+
+  modalLink.href =
+    project.link;
+
+
+  modalTags.innerHTML =
+    "";
+
+
+  project.tags.forEach(
+    tag=>{
+
+      const item =
+        document.createElement("span");
+
+      item.className =
+        "modal-tag";
+
+      item.textContent =
+        tag;
+
+      modalTags.appendChild(
+        item
+      );
+
+    }
+  );
+
+
+  modal.classList.add(
+    "open"
+  );
+
+}
+
+
+function closeModal(){
+
+  modal.classList.remove(
+    "open"
+  );
+
+}
+
+
+missions.forEach(
+  mission=>{
+
+    mission.addEventListener(
+      "click",
+      ()=>{
+
+        selectMission(
+          mission.dataset.project,
+          true
+        );
+
+      }
+    );
+
+  }
+);
+
+
+document
+  .getElementById("modalClose")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+document
+  .getElementById("modalDismiss")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+modal.addEventListener(
+  "click",
+  event=>{
+
+    if(event.target === modal){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+document
+  .querySelectorAll("[data-scroll]")
+  .forEach(
+    button=>{
+
+      button.addEventListener(
+        "click",
+        ()=>{
+
+          const target =
+            document.getElementById(
+              button.dataset.scroll
+            );
+
+          if(target){
+
+            target.scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+const skills =
+  document.querySelector(
+    ".skills"
+  );
+
+
+const skillObserver =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(
+        entry=>{
+
+          if(!entry.isIntersecting){
+            return;
+          }
+
+
+          entry.target
+            .querySelectorAll(
+              ".skill-fill"
+            )
+            .forEach(
+              fill=>{
+
+                fill.style.width =
+                  fill.dataset.width +
+                  "%";
+
+              }
+            );
+
+
+          skillObserver.unobserve(
+            entry.target
+          );
+
+        }
+      );
+
+    },
+    {
+      threshold:.25
+    }
+  );
+
+
+if(skills){
+
+  skillObserver.observe(
+    skills
+  );
+
+}
+
+
+/* =========================================================
+   TERMINAL
+========================================================= */
+
+const terminalOutput =
+  document.getElementById(
+    "terminalOutput"
+  );
+
+const terminalForm =
+  document.getElementById(
+    "terminalForm"
+  );
+
+const terminalInput =
+  document.getElementById(
+    "terminalInput"
+  );
+
+
+function printTerminal(
+  text,
+  className="term-output"
+){
+
+  const line =
+    document.createElement(
+      "div"
+    );
+
+  line.className =
+    "term-line " +
+    className;
+
+  line.textContent =
+    text;
+
+  terminalOutput.appendChild(
+    line
+  );
+
+  terminalOutput.scrollTop =
+    terminalOutput.scrollHeight;
+
+}
+
+
+terminalForm.addEventListener(
+  "submit",
+  event=>{
+
+    event.preventDefault();
+
+
+    const command =
+      terminalInput.value
+        .trim()
+        .toLowerCase();
+
+
+    if(!command){
+      return;
+    }
+
+
+    printTerminal(
+      "> " + command
+    );
+
+
+    if(command === "help"){
+
+      printTerminal(
+        "commands: help / missions / profile / github / recipes / status / clear"
+      );
+
+    }
+
+    else if(command === "missions"){
+
+      printTerminal(
+        "available missions: 1 pocket / 2 bio / 3 photo / 4 snake"
+      );
+
+    }
+
+    else if(command === "profile"){
+
+      printTerminal(
+        "DESTINY REBMAN // SOFTWARE DEVELOPER // GAME DESIGN"
+      );
+
+    }
+
+    else if(command === "status"){
+
+      printTerminal(
+        "ALL SYSTEMS NOMINAL // PORTFOLIO ONLINE"
+      );
+
+    }
+
+    else if(command === "github"){
+
+      printTerminal(
+        "opening GitHub archive..."
+      );
+
+      window.open(
+        "https://github.com/drebman",
+        "_blank",
+        "noopener"
+      );
+
+    }
+
+    else if(command === "recipes"){
+
+      printTerminal(
+        "opening Pocket Recipes case file..."
+      );
+
+      window.open(
+        "https://sites.google.com/uw.edu/pocketrecipes/home",
+        "_blank",
+        "noopener"
+      );
+
+    }
+
+    else if(command === "clear"){
+
+      terminalOutput.innerHTML =
+        "";
+
+    }
+
+    else if(
+      ["1","2","3","4"].includes(
+        command
+      )
+    ){
+
+      const ids = [
+        "pocket",
+        "bio",
+        "photo",
+        "snake"
+      ];
+
+
+      selectMission(
+        ids[
+          Number(command)-1
+        ],
+        true
+      );
+
+    }
+
+    else{
+
+      printTerminal(
+        "unknown command // type HELP"
+      );
+
+    }
+
+
+    terminalInput.value =
+      "";
+
+  }
+);
+
+
+/* =========================================================
+   KEYBOARD CONTROLS
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(
+      event.target.tagName === "INPUT" ||
+      event.target.tagName === "TEXTAREA"
+    ){
+
+      if(
+        event.key === "Escape"
+      ){
+
+        event.target.blur();
+
+      }
+
+      return;
+
+    }
+
+
+    if(
+      event.key === "Escape"
+    ){
+
+      closeModal();
+
+      return;
+
+    }
+
+
+    const missionKeys = {
+
+      "1":"pocket",
+      "2":"bio",
+      "3":"photo",
+      "4":"snake"
+
+    };
+
+
+    if(
+      missionKeys[event.key]
+    ){
+
+      selectMission(
+        missionKeys[event.key],
+        true
+      );
+
+    }
+
+
+    if(
+      event.key.toLowerCase() === "m"
+    ){
+
+      document
+        .getElementById("missions")
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+    }
+
+
+    if(
+      event.key.toLowerCase() === "p"
+    ){
+
+      document
+        .getElementById("profile")
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+    }
+
+
+    if(
+      event.key.toLowerCase() === "c"
+    ){
+
+      document
+        .getElementById("contact")
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+document.getElementById(
+  "year"
+).textContent =
+  new Date().getFullYear();
+
+
+/* =========================================================
+   SYSTEM STATUS LED
+========================================================= */
+
+/*
+  This deliberately uses JavaScript rather than
+  CSS animation.
+
+  The LED stays ON for 1 second,
+  then OFF for 1 second.
+
+  There is no opacity animation and no
+  transition, so the state change is
+  instantaneous and consistent.
+*/
+
+const systemDot =
+  document.getElementById(
+    "systemDot"
+  );
+
+
+let systemLedOn =
+  true;
+
+
+setInterval(
+  ()=>{
+
+    systemLedOn =
+      !systemLedOn;
+
+
+    systemDot.classList.toggle(
+      "online",
+      systemLedOn
+    );
+
+  },
+  1000
+);
+
+
+/* =========================================================
+   REAL RADAR
+========================================================= */
+
+const radarCanvas =
+  document.getElementById(
+    "radarCanvas"
+  );
+
+const radarCtx =
+  radarCanvas.getContext(
+    "2d"
+  );
+
+
+const radarTargets = [
+
+  {
+    angle:-2.15,
+    distance:.58,
+    label:"RECIPES"
+  },
+
+  {
+    angle:-.35,
+    distance:.72,
+    label:"BIO"
+  },
+
+  {
+    angle:1.15,
+    distance:.48,
+    label:"PHOTO"
+  },
+
+  {
+    angle:2.45,
+    distance:.76,
+    label:"SNAKE"
+  }
+
+];
+
+
+let radarAngle =
+  -Math.PI / 2;
+
+
+let lastRadarTime =
+  performance.now();
+
+
+/*
+  One full rotation every 20 seconds.
+*/
+
+const radarPeriod =
+  5000;
+
+
+function resizeRadar(){
+
+  const rect =
+    radarCanvas.getBoundingClientRect();
+
+
+  const dpr =
+    window.devicePixelRatio ||
+    1;
+
+
+  radarCanvas.width =
+    rect.width * dpr;
+
+
+  radarCanvas.height =
+    rect.height * dpr;
+
+
+  radarCtx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeRadar
+);
+
+
+resizeRadar();
+
+
+function normalizeAngle(
+  angle
+){
+
+  while(
+    angle > Math.PI
+  ){
+
+    angle -=
+      Math.PI * 2;
+
+  }
+
+
+  while(
+    angle < -Math.PI
+  ){
+
+    angle +=
+      Math.PI * 2;
+
+  }
+
+
+  return angle;
+
+}
+
+
+function drawRadar(time){
+
+  const rect =
+    radarCanvas.getBoundingClientRect();
+
+
+  const width =
+    rect.width;
+
+
+  const height =
+    rect.height;
+
+
+  const cx =
+    width / 2;
+
+
+  const cy =
+    height / 2;
+
+
+  const radius =
+    Math.min(
+      width,
+      height
+    ) * .46;
+
+
+  const delta =
+    time -
+    lastRadarTime;
+
+
+  lastRadarTime =
+    time;
+
+
+  radarAngle +=
+    (
+      delta /
+      radarPeriod
+    ) *
+    Math.PI *
+    2;
+
+
+  if(
+    radarAngle >
+    Math.PI * 2
+  ){
+
+    radarAngle -=
+      Math.PI * 2;
+
+  }
+
+
+  radarCtx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  /* -------------------------------------------------------
+     RINGS
+  ------------------------------------------------------- */
+
+  radarCtx.strokeStyle =
+    "#303030";
+
+  radarCtx.lineWidth =
+    1;
+
+
+  radarCtx.beginPath();
+
+  radarCtx.arc(
+    cx,
+    cy,
+    radius,
+    0,
+    Math.PI * 2
+  );
+
+  radarCtx.stroke();
+
+
+  [
+    .25,
+    .5,
+    .75
+  ].forEach(
+    scale=>{
+
+      radarCtx.beginPath();
+
+      radarCtx.arc(
+        cx,
+        cy,
+        radius * scale,
+        0,
+        Math.PI * 2
+      );
+
+      radarCtx.stroke();
+
+    }
+  );
+
+
+  /* -------------------------------------------------------
+     CROSSHAIRS
+  ------------------------------------------------------- */
+
+  radarCtx.beginPath();
+
+  radarCtx.moveTo(
+    cx - radius,
+    cy
+  );
+
+  radarCtx.lineTo(
+    cx + radius,
+    cy
+  );
+
+
+  radarCtx.moveTo(
+    cx,
+    cy - radius
+  );
+
+  radarCtx.lineTo(
+    cx,
+    cy + radius
+  );
+
+
+  radarCtx.stroke();
+
+
+  /* -------------------------------------------------------
+     SINGLE SWEEP
+  ------------------------------------------------------- */
+
+  const sweepX =
+    cx +
+    Math.cos(
+      radarAngle
+    ) *
+    radius;
+
+
+  const sweepY =
+    cy +
+    Math.sin(
+      radarAngle
+    ) *
+    radius;
+
+
+  radarCtx.beginPath();
+
+  radarCtx.moveTo(
+    cx,
+    cy
+  );
+
+  radarCtx.lineTo(
+    sweepX,
+    sweepY
+  );
+
+
+  radarCtx.strokeStyle =
+    "#ff3025";
+
+  radarCtx.lineWidth =
+    2;
+
+
+  radarCtx.shadowColor =
+    "#ff3025";
+
+  radarCtx.shadowBlur =
+    8;
+
+
+  radarCtx.stroke();
+
+
+  radarCtx.shadowBlur =
+    0;
+
+
+  /* -------------------------------------------------------
+     TARGETS
+  ------------------------------------------------------- */
+
+  radarTargets.forEach(
+    target=>{
+
+      const x =
+        cx +
+        Math.cos(
+          target.angle
+        ) *
+        radius *
+        target.distance;
+
+
+      const y =
+        cy +
+        Math.sin(
+          target.angle
+        ) *
+        radius *
+        target.distance;
+
+
+      const difference =
+        Math.abs(
+          normalizeAngle(
+            radarAngle -
+            target.angle
+          )
+        );
+
+
+      const detected =
+        difference < .07;
+
+
+      if(detected){
+
+        radarCtx.beginPath();
+
+        radarCtx.arc(
+          x,
+          y,
+          5,
+          0,
+          Math.PI * 2
+        );
+
+
+        radarCtx.fillStyle =
+          "#ff3025";
+
+
+        radarCtx.shadowColor =
+          "#ff3025";
+
+
+        radarCtx.shadowBlur =
+          15;
+
+
+        radarCtx.fill();
+
+
+        radarCtx.shadowBlur =
+          0;
+
+      }
+
+      else{
+
+        radarCtx.beginPath();
+
+        radarCtx.arc(
+          x,
+          y,
+          2.5,
+          0,
+          Math.PI * 2
+        );
+
+
+        radarCtx.fillStyle =
+          "#681414";
+
+
+        radarCtx.fill();
+
+      }
+
+    }
+  );
+
+
+  /* -------------------------------------------------------
+     CENTER
+  ------------------------------------------------------- */
+
+  radarCtx.beginPath();
+
+  radarCtx.arc(
+    cx,
+    cy,
+    3,
+    0,
+    Math.PI * 2
+  );
+
+
+  radarCtx.fillStyle =
+    "#ff3025";
+
+
+  radarCtx.fill();
+
+
+  requestAnimationFrame(
+    drawRadar
+  );
+
+}
+
+
+requestAnimationFrame(
+  drawRadar
+);
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+selectMission(
+  "pocket"
+);
+
+</script>
+
+</body>
+</html>
